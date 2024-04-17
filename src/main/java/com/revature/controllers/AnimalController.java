@@ -78,6 +78,29 @@ public class AnimalController {
         animalDAO.deleteById(animalId);
         return ResponseEntity.accepted().body("Animal " + a.getName() + " was removed from the system.");
     }
+    
+    // Get All Animals by Keeper ID
+    @GetMapping("/owner/{keeperId}")
+    public ResponseEntity<List<Animal>> getAnimalsByKeeperId(@PathVariable int keeperId) {
+        Keeper k = keeperDAO.findById(keeperId);
+        if (k == null) {
+            ResponseEntity.status(404).build();
+        }
 
+        List<Animal> animalList = animalDAO.findAll();
+        List<Animal> newAnimalList = new ArrayList<>();
+
+        if (animalList.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        for (Animal animal : animalList) {
+            if (animal.getKeeper() == k) {
+                newAnimalList.add(animal);
+            }
+        }
+        return ResponseEntity.ok(newAnimalList);
+
+    }
 
 }
