@@ -22,7 +22,7 @@ public class Animal {
     private String department;
 
     @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
-    @JoinColumn(name="keeperId")
+    @JoinColumn(name="keeperId", nullable=false)
     private Keeper keeper;
 
     public Animal() {
