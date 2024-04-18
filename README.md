@@ -9,7 +9,8 @@ GET localhost:8080/animals
 GET localhost:8080/animals/1
 
 
-## Select all items that belong to a certain user (find by user id FK) ===== TO DO
+## Select all items that belong to a certain user (find by user id FK)
+localhost:8080/animals/owner/1
 
 
 ## Insert a new item into the items table
